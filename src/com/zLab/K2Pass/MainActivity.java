@@ -9,10 +9,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.InputType;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
+import android.text.Layout;
+import android.view.*;
 import android.widget.*;
 
 import java.util.ArrayList;
@@ -22,6 +20,7 @@ public class MainActivity extends Activity {
 
     int PASSKEY_LENGTH = 10;
     int PASSKEY_LENGTH_NEW = 0;
+    private String MASTER_KEY = "";
 
     Button btnRandMasterKey;
     Button btnAddResources;
@@ -30,6 +29,7 @@ public class MainActivity extends Activity {
     ArrayList<String> valuesName;
     ArrayList<String> valuesPassword;
     ListViewAdaptor listResourcesAdapter;
+
     boolean activeDialog = false;
 
     @Override
@@ -94,10 +94,26 @@ public class MainActivity extends Activity {
             }
         });
 
-        txtMasterKey = (EditText) findViewById(R.id.txtMasterKey);
+        btnAddResources = (Button) findViewById(R.id.btnAddResource);
+        btnAddResources.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addNewItem_setName();
+            }
+        });
+
+        checkMasterKey();
+    }
+
+    private void checkMasterKey(){
+        activeDialog = true;
+
+        View masterPasswordLayout = LayoutInflater.from(MainActivity.this).inflate(R.layout.masterpasswordinput, null);
+
+        txtMasterKey = (EditText) masterPasswordLayout.findViewById(R.id.masterPasswordInput);
         txtMasterKey.setInputType(InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
 
-        btnRandMasterKey = (Button) findViewById(R.id.btnRandMasterKey);
+        btnRandMasterKey = (Button) masterPasswordLayout.findViewById(R.id.masterPasswordRandKey);
         btnRandMasterKey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -106,41 +122,110 @@ public class MainActivity extends Activity {
             }
         });
 
-        btnAddResources = (Button) findViewById(R.id.btnAddResource);
-        btnAddResources.setOnClickListener(new View.OnClickListener() {
+        final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
+                .setView(masterPasswordLayout)
+                .setTitle(R.string.master_key)
+                .setPositiveButton(R.string.ok, null)
+                .setNegativeButton(R.string.Cancel, null)
+                .create();
+
+        d.setOnShowListener(new DialogInterface.OnShowListener() {
+
             @Override
-            public void onClick(View v) {
-                addNewItem_setName();
+            public void onShow(DialogInterface dialog) {
+
+                Button bp = d.getButton(AlertDialog.BUTTON_POSITIVE);
+                bp.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        if(!txtMasterKey.getText().toString().equals("")){
+                            MASTER_KEY = txtMasterKey.getText().toString();
+                            activeDialog=false;
+                            d.dismiss();
+                        } else {
+                            Toast.makeText(MainActivity.this,R.string.empty_master,Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+                Button bn = d.getButton(AlertDialog.BUTTON_NEGATIVE);
+                bn.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        d.dismiss();
+                        MainActivity.this.finish();
+                    }
+                });
+
             }
         });
+        d.show();
     }
 
+    public void setPadding(View v, int padding){
+        float scale = getResources().getDisplayMetrics().density;
+        int dpAsPixels = (int) (padding*scale + 0.5f);
+
+        v.setPadding(dpAsPixels,dpAsPixels,dpAsPixels,dpAsPixels);
+    }
+    public int convertDpToPx(int px){
+        float scale = getResources().getDisplayMetrics().density;
+        return (int) (px*scale + 0.5f);
+    }
     private void addNewItem_setName(){
         activeDialog = true;
 
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle(R.string.new_name);
-
         final EditText input = new EditText(getApplicationContext());
         input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
-        input.setText(R.string.new_item_name);
-        builder.setView(input);
+        input.setText("");
 
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+        FrameLayout container = new FrameLayout(getApplicationContext());
+        FrameLayout.LayoutParams params = new  FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+        params.leftMargin= convertDpToPx(20);
+        params.rightMargin= convertDpToPx(20);
+        input.setLayoutParams(params);
+        container.addView(input);
+
+        final AlertDialog d = new AlertDialog.Builder(MainActivity.this)
+                .setView(container)
+                .setTitle(R.string.new_name)
+                .setPositiveButton(R.string.ok, null)
+                .setNegativeButton(R.string.Cancel, null)
+                .create();
+
+        d.setOnShowListener(new DialogInterface.OnShowListener() {
+
             @Override
-            public void onClick(DialogInterface dialog, int which) {
-                addNewItem_setLenght(input.getText().toString().toUpperCase());
-                activeDialog=false;
+            public void onShow(DialogInterface dialog) {
+
+                Button bp = d.getButton(AlertDialog.BUTTON_POSITIVE);
+                bp.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        if(!input.getText().toString().equals("")){
+                            addNewItem_setLenght(input.getText().toString().toUpperCase());
+                            activeDialog=false;
+                            d.dismiss();
+                        } else {
+                            Toast.makeText(MainActivity.this,R.string.empty_name,Toast.LENGTH_LONG).show();
+                        }
+                    }
+                });
+                Button bn = d.getButton(AlertDialog.BUTTON_NEGATIVE);
+                bn.setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View view) {
+                        activeDialog=false;
+                        d.cancel();
+                    }
+                });
+
             }
         });
-        builder.setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                activeDialog=false;
-                dialog.cancel();
-            }
-        });
-        builder.show();
+        d.show();
     }
     private void addNewItem_setLenght(final String name){
         AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
@@ -229,45 +314,6 @@ public class MainActivity extends Activity {
         listResourcesAdapter.notifyDataSetChanged();
     }
 
-    private void setPasswordLength(){
-        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-        builder.setTitle(R.string.resize_password);
-
-        PASSKEY_LENGTH_NEW = 10;
-
-        final NumberPicker np = new NumberPicker(getApplicationContext());
-        np.setMinValue(1);
-        np.setMaxValue(99);
-        np.setValue(PASSKEY_LENGTH_NEW);
-        np.setWrapSelectorWheel(true);
-
-        builder.setView(np);
-
-        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
-        {
-            @Override
-            public void onValueChange(NumberPicker picker, int oldVal, int newVal)
-            {
-                PASSKEY_LENGTH_NEW = newVal;
-            }
-        });
-
-        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                PASSKEY_LENGTH = PASSKEY_LENGTH_NEW;
-                refreshAllPassword();
-            }
-        });
-        builder.setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                dialog.cancel();
-            }
-        });
-        builder.show();
-    }
-
     private String getRandomString(int passkeyLength){
         return new RandomString(passkeyLength).nextString();
     }
@@ -280,9 +326,6 @@ public class MainActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_search:
-                setPasswordLength();
-                return true;
             case R.id.action_exit:
                 this.finish();
                 return true;

@@ -11,4 +11,7 @@
     <string name="no_action">Действие не определено.</string>
     <string name="new_item_name">NONAME</string>
     <string name="new_password">Выберите пароль</string>
+    <string name="master_key">Введите мастер ключ</string>
+    <string name="empty_master">Пустой ключ запрещен</string>
+    <string name="empty_name">Пустое имя запрещено</string>
 </resources>
