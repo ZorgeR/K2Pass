@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android" >
+    <!-- Search, should appear as action button -->
+    <item android:id="@+id/action_search"
+          android:icon="@drawable/arrows"
+          android:title="@string/resize_password"
+          android:showAsAction="always" />
+
+    <item android:id="@+id/action_exit"
+          android:title="@string/action_settings"
+          android:showAsAction="never" />
+</menu>

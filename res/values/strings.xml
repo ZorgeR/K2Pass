@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">K2Pass</string>
+    <string name="resize_password">Password length</string>
+    <string name="action_settings">Exit</string>
+    <string name="ok">OK</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Delete">Delete</string>
+    <string name="password_copied">Password for %1$s copied to buffer.</string>
+    <string name="new_name">Enter new name</string>
+    <string name="no_action">No action defined.</string>
+    <string name="new_item_name">NONAME</string>
 </resources>

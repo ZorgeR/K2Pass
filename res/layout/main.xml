@@ -22,7 +22,7 @@
                         android:drawableRight="@drawable/random_shuffle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/btnRandMasterKey" android:text="RAND"/>
+                        android:id="@+id/btnRandMasterKey" android:text="RAND" android:textStyle="bold"/>
         </LinearLayout>
     <ListView
             android:layout_width="fill_parent"

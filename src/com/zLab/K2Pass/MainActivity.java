@@ -2,12 +2,16 @@ package com.zLab.K2Pass;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.InputType;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.*;
 
@@ -16,16 +20,17 @@ import java.util.Random;
 
 public class MainActivity extends Activity {
 
-    int PASSKEY_LENGTH = 16;
+    int PASSKEY_LENGTH = 10;
+    int PASSKEY_LENGTH_NEW = 0;
 
     Button btnRandMasterKey;
     Button btnAddResources;
     EditText txtMasterKey;
     ListView listResources;
-    String NEW_ITEM_HEADER = "NONAME";
     ArrayList<String> valuesName;
     ArrayList<String> valuesPassword;
     ListViewAdaptor listResourcesAdapter;
+    boolean activeDialog = false;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,37 +47,48 @@ public class MainActivity extends Activity {
         listResources.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-                ClipData clip = ClipData.newPlainText(listResourcesAdapter.getName(position), listResourcesAdapter.getPassword(position));
-                clipboard.setPrimaryClip(clip);
-                Toast.makeText(getApplicationContext(), "Пароль от "+ listResourcesAdapter.getName(position) +" скопирован в буфер обмена.", Toast.LENGTH_LONG).show();
+                if(!activeDialog){
+                    ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                    ClipData clip = ClipData.newPlainText(listResourcesAdapter.getName(position), listResourcesAdapter.getPassword(position));
+                    clipboard.setPrimaryClip(clip);
+                    Toast.makeText(getApplicationContext(), getString(R.string.password_copied, listResourcesAdapter.getName(position)), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
         listResources.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+                activeDialog = true;
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Введите новое имя:");
+                builder.setTitle(R.string.new_name);
 
                 final EditText input = new EditText(getApplicationContext());
                 input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
                 input.setText(listResourcesAdapter.getName(position));
                 builder.setView(input);
 
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        listResourcesAdapter.setName(position, input.getText().toString());
+                        listResourcesAdapter.setName(position, input.getText().toString().toUpperCase());
                         listResourcesAdapter.notifyDataSetChanged();
+                        activeDialog=false;
                     }
                 });
-                builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        activeDialog=false;
                         dialog.cancel();
                     }
                 });
+                builder.setNeutralButton(R.string.Delete, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        Toast.makeText(MainActivity.this,R.string.no_action, Toast.LENGTH_SHORT).show();
+                        activeDialog=false;
+                    }});
                 builder.show();
                 return false;
             }
@@ -85,11 +101,8 @@ public class MainActivity extends Activity {
         btnRandMasterKey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtMasterKey.setText(MainActivity.this.getRandomString());
-                for(int i=0;i<listResourcesAdapter.getCount();i++){
-                    listResourcesAdapter.setPassword(i, MainActivity.this.getRandomString());
-                }
-                listResourcesAdapter.notifyDataSetChanged();
+                txtMasterKey.setText(MainActivity.this.getRandomString(PASSKEY_LENGTH));
+                refreshAllPassword();
             }
         });
 
@@ -97,15 +110,79 @@ public class MainActivity extends Activity {
         btnAddResources.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //listResourcesAdapter.add(getRandomString());
-                listResourcesAdapter.add(NEW_ITEM_HEADER, getRandomString());
+                listResourcesAdapter.add(getString(R.string.new_item_name), getRandomString(PASSKEY_LENGTH));
                 listResourcesAdapter.notifyDataSetChanged();
             }
         });
     }
 
-    private String getRandomString(){
-        return new RandomString(PASSKEY_LENGTH).nextString();
+    private void refreshAllPassword(){
+        for(int i=0;i<listResourcesAdapter.getCount();i++){
+            listResourcesAdapter.setPassword(i, MainActivity.this.getRandomString(PASSKEY_LENGTH));
+        }
+        listResourcesAdapter.notifyDataSetChanged();
+    }
+
+    private void setPasswordLength(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(R.string.resize_password);
+
+        PASSKEY_LENGTH_NEW = 10;
+
+        final NumberPicker np = new NumberPicker(getApplicationContext());
+        np.setMinValue(1);
+        np.setMaxValue(99);
+        np.setValue(PASSKEY_LENGTH_NEW);
+        np.setWrapSelectorWheel(true);
+
+        builder.setView(np);
+
+        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
+        {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal)
+            {
+                PASSKEY_LENGTH_NEW = newVal;
+            }
+        });
+
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                PASSKEY_LENGTH = PASSKEY_LENGTH_NEW;
+                refreshAllPassword();
+            }
+        });
+        builder.setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
+
+    private String getRandomString(int passkeyLength){
+        return new RandomString(passkeyLength).nextString();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_activity_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                setPasswordLength();
+                return true;
+            case R.id.action_exit:
+                this.finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }
 
