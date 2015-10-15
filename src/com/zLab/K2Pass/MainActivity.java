@@ -110,12 +110,118 @@ public class MainActivity extends Activity {
         btnAddResources.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listResourcesAdapter.add(getString(R.string.new_item_name), getRandomString(PASSKEY_LENGTH));
-                listResourcesAdapter.notifyDataSetChanged();
+                addNewItem_setName();
             }
         });
     }
 
+    private void addNewItem_setName(){
+        activeDialog = true;
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(R.string.new_name);
+
+        final EditText input = new EditText(getApplicationContext());
+        input.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS | InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+        input.setText(R.string.new_item_name);
+        builder.setView(input);
+
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                addNewItem_setLenght(input.getText().toString().toUpperCase());
+                activeDialog=false;
+            }
+        });
+        builder.setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                activeDialog=false;
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
+    private void addNewItem_setLenght(final String name){
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(R.string.resize_password);
+
+        PASSKEY_LENGTH_NEW = 10;
+
+        final NumberPicker np = new NumberPicker(getApplicationContext());
+        np.setMinValue(1);
+        np.setMaxValue(99);
+        np.setValue(PASSKEY_LENGTH_NEW);
+        np.setWrapSelectorWheel(true);
+
+        builder.setView(np);
+
+        np.setOnValueChangedListener(new NumberPicker.OnValueChangeListener()
+        {
+            @Override
+            public void onValueChange(NumberPicker picker, int oldVal, int newVal)
+            {
+                PASSKEY_LENGTH_NEW = newVal;
+            }
+        });
+
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                PASSKEY_LENGTH = PASSKEY_LENGTH_NEW;
+                addNewItem_setPassword(name, PASSKEY_LENGTH);
+            }
+        });
+        builder.setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder.show();
+    }
+    private void addNewItem_setPassword(final String name,final int lenght){
+        activeDialog = true;
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+        builder.setTitle(R.string.new_password);
+
+        final ListView paswordList = new ListView(getApplicationContext());
+        final ArrayAdapter passwordListAdaptor = new ArrayAdapter<String>(getApplicationContext(), R.layout.passwordrow, R.id.passwordItem);
+        paswordList.setAdapter(passwordListAdaptor);
+
+        passwordListAdaptor.add(getRandomString(lenght));
+        passwordListAdaptor.add(getRandomString(lenght));
+        passwordListAdaptor.add(getRandomString(lenght));
+        passwordListAdaptor.add(getRandomString(lenght));
+        passwordListAdaptor.add(getRandomString(lenght));
+
+        builder.setView(paswordList);
+
+        builder.setNegativeButton(R.string.Cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                activeDialog=false;
+                dialog.cancel();
+            }
+        });
+
+        final AlertDialog dialog = builder.show();
+
+        paswordList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                addNewItem_makeNewPasswordItem(name, passwordListAdaptor.getItem(position).toString());
+                activeDialog=false;
+                dialog.dismiss();
+            }
+        });
+
+    }
+    private void addNewItem_makeNewPasswordItem(String name, String password){
+        listResourcesAdapter.add(name, password);
+        listResourcesAdapter.notifyDataSetChanged();
+    }
     private void refreshAllPassword(){
         for(int i=0;i<listResourcesAdapter.getCount();i++){
             listResourcesAdapter.setPassword(i, MainActivity.this.getRandomString(PASSKEY_LENGTH));
