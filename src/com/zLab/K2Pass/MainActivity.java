@@ -117,7 +117,7 @@ public class MainActivity extends Activity {
         btnRandMasterKey.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                txtMasterKey.setText(MainActivity.this.getRandomString(PASSKEY_LENGTH));
+                txtMasterKey.setText(MainActivity.this.getRandomMasterKey());
                 refreshAllPassword();
             }
         });
@@ -313,7 +313,20 @@ public class MainActivity extends Activity {
         }
         listResourcesAdapter.notifyDataSetChanged();
     }
+    private String getRandomMasterKey(){
+        String[] colorArray = getResources().getStringArray(R.array.color_names);
+        String[] vegetablesArray = getResources().getStringArray(R.array.vegetables_names);
+        String[] animalArray = getResources().getStringArray(R.array.animals_name);
 
+        String randomBegin = colorArray[new Random().nextInt(colorArray.length)];
+        String randomEnd = "";
+        if(new Random().nextBoolean()){
+            randomEnd = animalArray[new Random().nextInt(animalArray.length)];
+        } else {
+            randomEnd = vegetablesArray[new Random().nextInt(vegetablesArray.length)];
+        }
+        return randomBegin+" "+randomEnd;
+    }
     private String getRandomString(int passkeyLength){
         return new RandomString(passkeyLength).nextString();
     }

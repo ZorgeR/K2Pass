@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="color_names">
+        <item>Amaranth</item>
+        <item>Amber</item>
+        <item>Amethyst</item>
+        <item>Apricot</item>
+        <item>Aquamarine</item>
+        <item>Azure</item>
+        <item>Baby blue</item>
+        <item>Beige</item>
+        <item>Black</item>
+        <item>Blue</item>
+        <item>Blue-green</item>
+        <item>Blue-violet</item>
+        <item>Blush</item>
+        <item>Bronze</item>
+        <item>Brown</item>
+        <item>Burgundy</item>
+        <item>Byzantium</item>
+        <item>Carmine</item>
+        <item>Cerise</item>
+        <item>Cerulean</item>
+        <item>Champagne</item>
+        <item>Chartreuse green</item>
+        <item>Chocolate</item>
+        <item>Cobalt blue</item>
+        <item>Coffee</item>
+        <item>Copper</item>
+        <item>Coral</item>
+        <item>Crimson</item>
+        <item>Cyan</item>
+        <item>Desert sand</item>
+        <item>Electric blue</item>
+        <item>Emerald</item>
+        <item>Erin</item>
+        <item>Gold</item>
+        <item>Gray</item>
+        <item>Green</item>
+        <item>Harlequin</item>
+        <item>Indigo</item>
+        <item>Ivory</item>
+        <item>Jade</item>
+        <item>Jungle green</item>
+        <item>Lavender</item>
+        <item>Lemon</item>
+        <item>Lilac</item>
+        <item>Lime</item>
+        <item>Magenta</item>
+        <item>Magenta rose</item>
+        <item>Maroon</item>
+        <item>Mauve</item>
+        <item>Navy blue</item>
+        <item>Ocher</item>
+        <item>Olive</item>
+        <item>Orange</item>
+        <item>Orange-red</item>
+        <item>Orchid</item>
+        <item>Peach</item>
+        <item>Pear</item>
+        <item>Periwinkle</item>
+        <item>Persian blue</item>
+        <item>Pink</item>
+        <item>Plum</item>
+        <item>Prussian blue</item>
+        <item>Puce</item>
+        <item>Purple</item>
+        <item>Raspberry</item>
+        <item>Red</item>
+        <item>Red-violet</item>
+        <item>Rose</item>
+        <item>Ruby</item>
+        <item>Salmon</item>
+        <item>Sangria</item>
+        <item>Sapphire</item>
+        <item>Scarlet</item>
+        <item>Silver</item>
+        <item>Slate gray</item>
+        <item>Spring bud</item>
+        <item>Spring green</item>
+        <item>Tan</item>
+        <item>Taupe</item>
+        <item>Teal</item>
+        <item>Turquoise</item>
+        <item>Violet</item>
+        <item>Viridian</item>
+        <item>White</item>
+        <item>Yankees Blue</item>
+        <item>Yellow</item>
+    </string-array>
+    <string-array name="vegetables_names">
+        <item>Artichoke</item>
+        <item>Arugula</item>
+        <item>Asparagus</item>
+        <item>Aubergine</item>
+        <item>Amaranth</item>
+        <item>Legumes</item>
+        <item>Alfalfa sprouts</item>
+        <item>Azuki beans</item>
+        <item>Bean sprouts</item>
+        <item>Black beans</item>
+        <item>Black-eyed peas</item>
+        <item>Borlotti bean</item>
+        <item>Broad beans</item>
+        <item>Chickpeas</item>
+        <item>Garbanzos</item>
+        <item>Green beans</item>
+        <item>Kidney beans</item>
+        <item>Lentils</item>
+        <item>Lima beans or Butter bean</item>
+        <item>Mung beans</item>
+        <item>Navy beans</item>
+        <item>Pinto beans</item>
+        <item>Runner beans</item>
+        <item>Soy beans</item>
+        <item>Peas</item>
+        <item>Mangetout or Snap peas</item>
+        <item>Bok choy</item>
+        <item>Broccoflower</item>
+        <item>Broccoli</item>
+        <item>Brussels sprouts</item>
+        <item>Cabbage</item>
+        <item>Calabrese</item>
+        <item>Cannabis</item>
+        <item>Carrots</item>
+        <item>Cauliflower</item>
+        <item>Celery</item>
+        <item>Chard</item>
+        <item>Collard greens</item>
+        <item>Corn salad</item>
+        <item>Endive</item>
+        <item>Fiddleheads</item>
+        <item>Frisee</item>
+        <item>Herbs and spices</item>
+        <item>Anise</item>
+        <item>Basil</item>
+        <item>Caraway</item>
+        <item>Cilantro</item>
+        <item>Coriander</item>
+        <item>Chamomile</item>
+        <item>Dill</item>
+        <item>Fennel</item>
+        <item>Lavender</item>
+        <item>Lemon Grass</item>
+        <item>Marjoram</item>
+        <item>Oregano</item>
+        <item>Parsley</item>
+        <item>Rosemary</item>
+        <item>Sage</item>
+        <item>Thyme</item>
+        <item>Kale</item>
+        <item>Kohlrabi</item>
+        <item>Lettuce Lactuca sativa</item>
+        <item>Maize</item>
+        <item>Mushrooms</item>
+        <item>Mustard greens</item>
+        <item>Nettles</item>
+        <item>New Zealand spinach</item>
+        <item>Okra</item>
+        <item>Onion family</item>
+        <item>Chives</item>
+        <item>Garlic</item>
+        <item>Leek Allium porrum</item>
+        <item>Onion</item>
+        <item>Shallot</item>
+        <item>Spring onion</item>
+        <item>Parsley</item>
+        <item>Peppers</item>
+        <item>Green pepper and Red pepper</item>
+        <item>Chili pepper</item>
+        <item>Jalapeno</item>
+        <item>Habanero</item>
+        <item>Paprika</item>
+        <item>Tabasco pepper</item>
+        <item>Cayenne pepper</item>
+        <item>Radicchio</item>
+        <item>Rhubarb</item>
+        <item>Root vegetables</item>
+        <item>Beetroot</item>
+        <item>mangel-wurzel</item>
+        <item>Carrot</item>
+        <item>Celeriac</item>
+        <item>Daikon</item>
+        <item>Ginger</item>
+        <item>Parsnip</item>
+        <item>Rutabaga</item>
+        <item>Turnip</item>
+        <item>Radish</item>
+        <item>Swede</item>
+        <item>Turnip</item>
+        <item>Wasabi</item>
+        <item>Horseradish</item>
+        <item>White radish</item>
+        <item>Salsify</item>
+        <item>Skirret</item>
+        <item>Spinach</item>
+        <item>Topinambur</item>
+        <item>Squashes</item>
+        <item>Acorn squash</item>
+        <item>Butternut squash</item>
+        <item>Banana squash</item>
+        <item>Courgette</item>
+        <item>Cucumber</item>
+        <item>Delicata</item>
+        <item>Gem squash</item>
+        <item>Hubbard squash</item>
+        <item>Marrow</item>
+        <item>Patty pans</item>
+        <item>Pumpkin</item>
+        <item>Spaghetti squash</item>
+        <item>Tat soi</item>
+        <item>Tomato</item>
+        <item>Tubers</item>
+        <item>Jicama</item>
+        <item>Jerusalem artichoke</item>
+        <item>Potato</item>
+        <item>Sweet potato</item>
+        <item>Taro</item>
+        <item>Yam</item>
+        <item>Water chestnut</item>
+        <item>Watercress</item>
+        <item>Zucchini</item>
+    </string-array>
+    <string-array name="animals_name">
+        <item>Aardvark</item>
+        <item>Albatross</item>
+        <item>Alligator</item>
+        <item>Alpaca</item>
+        <item>Ant</item>
+        <item>Anteater</item>
+        <item>Antelope</item>
+        <item>Ape</item>
+        <item>Armadillo</item>
+        <item>Ass</item>
+        <item>Baboon</item>
+        <item>Badger</item>
+        <item>Barracuda</item>
+        <item>Bat</item>
+        <item>Bear</item>
+        <item>Beaver</item>
+        <item>Bee</item>
+        <item>Bird</item>
+        <item>Bison</item>
+        <item>Boar</item>
+        <item>Buffalo</item>
+        <item>African</item>
+        <item>Butterfly</item>
+        <item>Camel</item>
+        <item>Caribou</item>
+        <item>Cassowary</item>
+        <item>Cat</item>
+        <item>Caterpillar</item>
+        <item>Cattle</item>
+        <item>Chamois</item>
+        <item>Cheetah</item>
+        <item>Chicken</item>
+        <item>Chimpanzee</item>
+        <item>Chinchilla</item>
+        <item>Chough</item>
+        <item>Coati</item>
+        <item>Cobra</item>
+        <item>Cockroach</item>
+        <item>Cod</item>
+        <item>Cormorant</item>
+        <item>Coyote</item>
+        <item>Crab</item>
+        <item>Crane</item>
+        <item>Crocodile</item>
+        <item>Crow</item>
+        <item>Curlew</item>
+        <item>Deer</item>
+        <item>Dinosaur</item>
+        <item>Dog</item>
+        <item>Dogfish</item>
+        <item>Shark</item>
+        <item>Dolphin</item>
+        <item>Donkey</item>
+        <item>Dotterel</item>
+        <item>Dove</item>
+        <item>Dragonfly</item>
+        <item>Duck</item>
+        <item>Dugong</item>
+        <item>Dunlin</item>
+        <item>Eagle</item>
+        <item>Echidna</item>
+        <item>Eel</item>
+        <item>Eland</item>
+        <item>Elephant</item>
+        <item>Elephant seal</item>
+        <item>Elk</item>
+        <item>Emu</item>
+        <item>Falcon</item>
+        <item>Ferret</item>
+        <item>Finch</item>
+        <item>Fish</item>
+        <item>Flamingo</item>
+        <item>Fly</item>
+        <item>Fox</item>
+        <item>Frog</item>
+        <item>Gaur</item>
+        <item>Gazelle</item>
+        <item>Gerbil</item>
+        <item>Giant panda</item>
+        <item>Giraffe</item>
+        <item>Gnat</item>
+        <item>Gnu</item>
+        <item>Goat</item>
+        <item>Goldfinch</item>
+        <item>Goosander</item>
+        <item>Goose</item>
+        <item>Gorilla</item>
+        <item>Goshawk</item>
+        <item>Grasshopper</item>
+        <item>Grouse</item>
+        <item>Guanaco</item>
+        <item>Guinea fowl</item>
+        <item>Guinea pig</item>
+        <item>Gull</item>
+        <item>Hamster</item>
+        <item>Hare</item>
+        <item>Hawk</item>
+        <item>Hedgehog</item>
+        <item>Heron</item>
+        <item>Herring</item>
+        <item>Hippopotamus</item>
+        <item>Hornet</item>
+        <item>Horse</item>
+        <item>Hummingbird</item>
+        <item>Hyena</item>
+        <item>Ibex</item>
+        <item>Ibis</item>
+        <item>Jackal</item>
+        <item>Jaguar</item>
+        <item>Jay</item>
+        <item>Jellyfish</item>
+        <item>Kangaroo</item>
+        <item>Kinkajou</item>
+        <item>Koala</item>
+        <item>Komodo dragon</item>
+        <item>Kouprey</item>
+        <item>Kudu</item>
+        <item>Lapwing</item>
+        <item>Lark</item>
+        <item>Lemur</item>
+        <item>Leopard</item>
+        <item>Lion</item>
+        <item>Llama</item>
+        <item>Lobster</item>
+        <item>Locust</item>
+        <item>Loris</item>
+        <item>Louse</item>
+        <item>Lyrebird</item>
+        <item>Magpie</item>
+        <item>Mallard</item>
+        <item>Also see Duck</item>
+        <item>Manatee</item>
+        <item>Mandrill</item>
+        <item>Mink</item>
+        <item>Mole</item>
+        <item>Mongoose</item>
+        <item>Monkey</item>
+        <item>Moose</item>
+        <item>Mouse</item>
+        <item>Mosquito</item>
+        <item>Narwhal</item>
+        <item>Newt</item>
+        <item>Nightingale</item>
+        <item>Octopus</item>
+        <item>Okapi</item>
+        <item>Opossum</item>
+        <item>Ostrich</item>
+        <item>Otter</item>
+        <item>Owl</item>
+        <item>Oyster</item>
+        <item>Panther</item>
+        <item>Parrot</item>
+        <item>Panda</item>
+        <item>Partridge</item>
+        <item>Peafowl</item>
+        <item>Pelican</item>
+        <item>Penguin</item>
+        <item>Pheasant</item>
+        <item>Pig</item>
+        <item>Pigeon</item>
+        <item>Polar Bear</item>
+        <item>Pony</item>
+        <item>Porcupine</item>
+        <item>Porpoise</item>
+        <item>Prairie dog</item>
+        <item>Quail</item>
+        <item>Quelea</item>
+        <item>Quetzal</item>
+        <item>Rabbit</item>
+        <item>Raccoon</item>
+        <item>Ram</item>
+        <item>Rat</item>
+        <item>Raven</item>
+        <item>Red deer</item>
+        <item>Red panda</item>
+        <item>Reindeer</item>
+        <item>Rhinoceros</item>
+        <item>Rook</item>
+        <item>Salamander</item>
+        <item>Salmon</item>
+        <item>Sand dollar</item>
+        <item>Sandpiper</item>
+        <item>Sardine</item>
+        <item>Sea lion</item>
+        <item>Sea urchin</item>
+        <item>Seahorse</item>
+        <item>Seal</item>
+        <item>Shark</item>
+        <item>Sheep</item>
+        <item>Shrew</item>
+        <item>Skunk</item>
+        <item>Sloth</item>
+        <item>Snail</item>
+        <item>Snake</item>
+        <item>Spider</item>
+        <item>Squirrel</item>
+        <item>Starling</item>
+        <item>Swan</item>
+        <item>Tapir</item>
+        <item>Tarsier</item>
+        <item>Termite</item>
+        <item>Tiger</item>
+        <item>Toad</item>
+        <item>Turkey</item>
+        <item>Turtle</item>
+        <item>Vicuña</item>
+        <item>Wallaby</item>
+        <item>Walrus</item>
+        <item>Wasp</item>
+        <item>Water buffalo</item>
+        <item>Weasel</item>
+        <item>Whale</item>
+        <item>Wolf</item>
+        <item>Wolverine</item>
+        <item>Wombat</item>
+        <item>Wren</item>
+        <item>Yak</item>
+    </string-array>
+</resources>
