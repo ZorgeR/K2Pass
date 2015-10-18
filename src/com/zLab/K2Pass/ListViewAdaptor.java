@@ -56,6 +56,18 @@ public class ListViewAdaptor extends ArrayAdapter<String> {
         passwordValues.set(index, newPassword);
     }
 
+    public void deleteItem(int index){
+        nameValues.remove(index);
+        passwordValues.remove(index);
+    }
+    public void changeItemAtPosition(int index, String name, String Password){
+        nameValues.remove(index);
+        passwordValues.remove(index);
+
+        nameValues.add(index, name);
+        passwordValues.add(index, Password);
+    }
+
     @Override
     public int getCount() {
         return nameValues.size();

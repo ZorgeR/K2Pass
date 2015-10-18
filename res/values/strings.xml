@@ -7,11 +7,13 @@
     <string name="Cancel">Cancel</string>
     <string name="Delete">Delete</string>
     <string name="password_copied">Password for %1$s copied to buffer.</string>
-    <string name="new_name">Enter new name</string>
+    <string name="new_name">Enter name</string>
     <string name="no_action">No action defined.</string>
     <string name="new_item_name">NONAME</string>
     <string name="new_password">Choose password</string>
     <string name="master_key">Enter master key</string>
     <string name="empty_master">Empty key is not allowed</string>
     <string name="empty_name">Empty name is not allowed</string>
+    <string name="edit">Edit</string>
+    <string name="actions">Possible actions</string>
 </resources>

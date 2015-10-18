@@ -7,11 +7,13 @@
     <string name="Cancel">Отмена</string>
     <string name="Delete">Удалить</string>
     <string name="password_copied">Пароль от %1$s скопирован в буфер обмена.</string>
-    <string name="new_name">Введите новое имя</string>
+    <string name="new_name">Введите имя</string>
     <string name="no_action">Действие не определено.</string>
     <string name="new_item_name">NONAME</string>
     <string name="new_password">Выберите пароль</string>
     <string name="master_key">Введите мастер ключ</string>
     <string name="empty_master">Пустой ключ запрещен</string>
     <string name="empty_name">Пустое имя запрещено</string>
+    <string name="edit">Изменить</string>
+    <string name="actions">Возможные действия</string>
 </resources>
