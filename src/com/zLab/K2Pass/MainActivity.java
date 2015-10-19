@@ -379,7 +379,11 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if(isEdit){
-                    jsonArray.remove(position);
+                    if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+                        jsonArray.remove(position);
+                    } else {
+                        oldApiJSONremove(position);
+                    }
                     addNewItemToSettings(name, length, position, true, pos);
                     listResourcesAdapter.changeItemAtPosition(pos, name, passwordListAdaptor.getItem(position).toString());
                     listResourcesAdapter.notifyDataSetChanged();
