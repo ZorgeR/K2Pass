@@ -533,20 +533,20 @@ class hmacController{
 
     public String getNewStringPassword(String textToCrypt, int length, int method) throws UnsupportedEncodingException {
         if (method==METHOD_REVERSE){
-            return new StringBuilder(new String(Hex.encodeHex(MAC.doFinal(textToCrypt.getBytes("UTF-8"))))).reverse().toString().substring(0,length);
+            return new StringBuilder(new String(Hex.encodeHex(MAC.doFinal((textToCrypt+length).getBytes("UTF-8"))))).reverse().toString().substring(0,length);
         } else if (method==METHOD_HMAC_NORMAL){
-            String str = new String(Hex.encodeHex(MAC.doFinal(textToCrypt.getBytes("UTF-8"))));
+            String str = new String(Hex.encodeHex(MAC.doFinal((textToCrypt+length).getBytes("UTF-8"))));
             return getNewStringPassword(str,length,METHOD_NORMAL);
         } else if (method==METHOD_HMAC_REVERSE){
-            String str = new String(Hex.encodeHex(MAC.doFinal(textToCrypt.getBytes("UTF-8"))));
+            String str = new String(Hex.encodeHex(MAC.doFinal((textToCrypt+length).getBytes("UTF-8"))));
             return getNewStringPassword(str,length,METHOD_REVERSE);
         } else if (method==METHOD_SPLIT){
-            String str = new String(Hex.encodeHex(MAC.doFinal(textToCrypt.getBytes("UTF-8"))));
+            String str = new String(Hex.encodeHex(MAC.doFinal((textToCrypt+length).getBytes("UTF-8"))));
             String newStr = str.substring(str.length()/2,str.length()) + str.substring(0,str.length()/2);
             return newStr.substring(0, length);
         } else {
             // IF METHOD_NORMAL
-            return new String(Hex.encodeHex(MAC.doFinal(textToCrypt.getBytes("UTF-8")))).substring(0,length);
+            return new String(Hex.encodeHex(MAC.doFinal((textToCrypt+length).getBytes("UTF-8")))).substring(0,length);
         }
     }
 }
